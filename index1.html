@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+		<!--Определение стилей HTML страницы редактора-->
+    <style>
+        h1 {
+            font-family: arial;
+            color: dimgray;
+        }
+
+        body {
+            font-family: arial;
+            margin: 30px;
+        }
+
+        canvas {
+            height: 200px;
+            border: 1px solid lightgray;
+        }
+
+        input {
+            font-size: 14pt;
+        }
+    </style>
+    <title>Photo Editor</title>
+</head>
+
+<body>
+    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+
+    <h1>Photo Editor</h1>
+    <canvas id="can"></canvas>
+<!--Создание кнопок-->
+    <p>
+        <input type="file" multiple="false" accept="image/*" id="finput" onchange="upload()">
+    </p>
+    <p>
+        <input type="button" value="Make Grayscale" onclick="imageProcessor.makeGray()">
+        <input type="button" value="Make Sepia" onclick="imageProcessor.sepia()">
+        <input type="button" value="Make Negativ" onclick="imageProcessor.negativ()">
+        <input type="button" value="Add Noise" onclick="imageProcessor.addNoise()">
+    </p>
+<!--Подключение дополнительных файлов для полноценной работы, определение языка содежащегося в файле-->
+    <script type="text/javascript" src="./ImageProcessor.js"></script>
+    <script type="text/javascript">
+        let imageProcessor = new ImageProcessor();
+<!--Функция загрузки фотографии-->
+        function upload() {
+            var fileinput = document.getElementById("finput");
+            imageProcessor.image = new SimpleImage(fileinput);
+            imageProcessor._drawImage();
+        }
+    </script>
+	 
+</body>
+
+</html>
